@@ -1,5 +1,5 @@
 ﻿
-namespace HappyTicket.Model
+namespace LuckyTicket.Model
 {
     public class Ticket
     {

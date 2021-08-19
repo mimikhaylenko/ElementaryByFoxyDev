@@ -1,14 +1,11 @@
 ﻿using CominucationWithConsole;
-using HappyTicket.Model;
-using HappyTicket.ViewModel;
-using System;
-using System.Collections.Generic;
+using LuckyTicket.ViewModel;
 
-namespace HappyTicket
+namespace LuckyTicket
 {
-    class Program
-    {    
-        static void Main(string[] args)
+    public class Program
+    {
+        public static void Main(string[] args)
         {
             TicketController.StartProgram(args);
             ConsoleManager.CloseProgram();

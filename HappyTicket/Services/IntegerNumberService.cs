@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HappyTicket.Services
+namespace LuckyTicket.Services
 {
    public static class IntegerNumberService
     {

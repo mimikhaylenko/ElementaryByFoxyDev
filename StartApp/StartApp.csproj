@@ -6,7 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ChessBoard\ChessBoard.csproj" />
+    <ProjectReference Include="..\Fibonachi\Fibonacci.csproj" />
     <ProjectReference Include="..\HappyTicket\LuckyTicket.csproj" />
+    <ProjectReference Include="..\Triangles\Envelopes.csproj" />
   </ItemGroup>
 
 </Project>

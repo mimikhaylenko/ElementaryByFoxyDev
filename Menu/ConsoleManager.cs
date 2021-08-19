@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace CominucationWithConsole
 {
     public static class ConsoleManager
     {
-        public static List<uint> ParseToUint(List<string> parameterNames)
+        public static List<T> ParseToList<T>(List<string> parameterNames)
         {
             int parametersCount = parameterNames.Count;
-            List<uint> inputedParameters = new List<uint>(parametersCount);
+            List<T> inputedParameters = new List<T>(parametersCount);
             for (int i = 0; i < parametersCount; i++)
             {
                 var name = parameterNames[i];
                 try
                 {
-                    uint newParameter = ReadParameter(name);
+                    T newParameter = ReadParameter<T>(name);
                     inputedParameters.Add(newParameter);
                 }
                 catch (OperationCanceledException)
@@ -26,15 +27,24 @@ namespace CominucationWithConsole
             return inputedParameters;
         }
 
-        public static uint ReadParameter(string parameterName)
+        public static T ReadParameter<T>(string parameterName)
         {
-            uint inputedParameter;
+            T inputedParameter = default(T);
             bool inputIsValid;
+            TypeConverter converter = TypeDescriptor.GetConverter(typeof(T));
             do
             {
                 Console.WriteLine($"Enter the {parameterName} or press /q for exit");
                 string inputedString = Console.ReadLine();
-                inputIsValid = uint.TryParse(inputedString, out inputedParameter);
+                try
+                {
+                    inputedParameter = (T)converter.ConvertFromString(inputedString);
+                    inputIsValid = true;
+                }
+                catch
+                {
+                    inputIsValid = false;
+                }
                 if (!inputIsValid)
                 {
                     if (inputedString.Equals("/q"))
@@ -46,31 +56,37 @@ namespace CominucationWithConsole
             } while (!inputIsValid);
             return inputedParameter;
         }
-        public static List<uint> ArgsToUint(string[] args)
+
+        public static List<T> ArgsToList<T>(string[] args)
         {
-            uint inputedParameter;
-            List<uint> inputedParameters = new List<uint>();
+            T inputedParameter;
+            TypeConverter converter = TypeDescriptor.GetConverter(typeof(T));
+            List<T> inputedParameters = new List<T>();
             for (int i = 0; i < args.Length; i++)
             {
-                if(uint.TryParse(args[i], out inputedParameter))
-                {
+                try {
+                    inputedParameter = (T)converter.ConvertFromString(args[i]);
                     inputedParameters.Add(inputedParameter);
                 }
-                else
+                catch(InvalidCastException)
                 {
                     throw new Exception($"Value {args[i]} is not valid");
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
                 }
             }
             return inputedParameters;
         }
-        public static List<uint> GetParameters(string[] args, List<string> parametersNames = null)
+        public static List<T> GetParameters<T>(string[] args, List<string> parametersNames = null)
         {
-            List<uint> inputedParameters;
+            List<T> inputedParameters;
             if (args.Length == 2)
             {
                 try
                 {
-                    return ConsoleManager.ArgsToUint(args);
+                    return ArgsToList<T>(args);
                 }
                 catch (Exception ex)
                 {
@@ -82,14 +98,14 @@ namespace CominucationWithConsole
             {
                 throw new OperationCanceledException("parametersNames can't be null");
             }           
-            inputedParameters = ConsoleManager.ParseToUint(parametersNames);
+            inputedParameters = ParseToList<T>(parametersNames);
             return inputedParameters;
         }
         public static bool TryInitParameters(string[] args, List<string> parametersNames, out List<uint> parameters)
         {
             try
             {
-                parameters = GetParameters(args, parametersNames);
+                parameters = GetParameters<uint>(args, parametersNames);
                 return true;
             }
             catch (Exception ex)
@@ -105,17 +121,6 @@ namespace CominucationWithConsole
             Console.WriteLine("Press any key to exit");
             Console.Read();
             Console.ForegroundColor = ConsoleColor.White;
-        }
-        public static bool IsEveryStringHasEnoughSymbols(string[] ticketArray, int ticketLenght)
-        {
-            for (int i = 0; i < ticketArray.Length; i++)
-            {
-                if (ticketArray[i].Length != ticketLenght)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        }   
     }
 }

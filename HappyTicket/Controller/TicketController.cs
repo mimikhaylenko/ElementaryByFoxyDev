@@ -1,18 +1,18 @@
 ﻿using CominucationWithConsole;
-using HappyTicket.Model;
-using HappyTicket.Services;
+using LuckyTicket.Model;
+using LuckyTicket.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HappyTicket.ViewModel
+namespace LuckyTicket.ViewModel
 {
     static class TicketController
     {
         static List<Ticket> tickets;
         public static void StartProgram(string[] args)
         {
-            if (!ConsoleManager.IsEveryStringHasEnoughSymbols(args, 6))
+            if (!IsEveryNumberHasEnoughSymbols(args, 6))
             {
                 Console.WriteLine("Error! Parameters are not valid.");
             }
@@ -27,6 +27,17 @@ namespace HappyTicket.ViewModel
             {
                 Console.WriteLine("Parameters are not valid. Do you want to continue? (Press y or n)");
             }
+        }
+        public static bool IsEveryNumberHasEnoughSymbols(string[] ticketArray, int ticketLenght)
+        {
+            for (int i = 0; i < ticketArray.Length; i++)
+            {
+                if (ticketArray[i].Length != ticketLenght)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         static private void InitTickets(List<uint> inputedParameters)
         {

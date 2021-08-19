@@ -1,46 +1,49 @@
-﻿using System;
+﻿using CominucationWithConsole;
+using Fibonacci.Service;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Fibonacci.Controller
+namespace Fibonacci
 {
     class FibonacciController
     {
-        public static List<ulong> GetFibonacciNumbers(long maxValue)
+        public static void Start(string[] args)
         {
-            if (maxValue <= 0)
+            List<uint> sequenceFibonacci = new List<uint>();
+            uint numbersLenght = 0;
+            bool inputedOneNumber = args.Length == 1 && uint.TryParse(args[0], out numbersLenght);
+            if (inputedOneNumber && numbersLenght < 1)
             {
-                throw new ArgumentException("The maximum value can't be less than 1");
+                numbersLenght = ConsoleManager.ReadParameter<uint>("value");
             }
-            if (maxValue > long.MaxValue)
+            else if (inputedOneNumber)
             {
-                throw new ArgumentException("The maximum value is too huge");
-            }
-            var sequenceFibonacci = new List<ulong>() { 1, 1 };
-            if (maxValue == 1)
-            {
-                return sequenceFibonacci;
-            }
-            ulong nextSequenceValue = sequenceFibonacci[sequenceFibonacci.Count - 1];
-            for (int i = 2; nextSequenceValue <= (ulong)maxValue; i++)
-            {
+                Console.WriteLine($"Fibonacci numbers with {numbersLenght} digits:"); 
                 try
                 {
-                    nextSequenceValue = sequenceFibonacci[i - 1] + sequenceFibonacci[i - 2];
-                    if (nextSequenceValue < sequenceFibonacci[i - 1])
-                        throw new InvalidOperationException("An item can't be casted to long");
-                    sequenceFibonacci.Add(nextSequenceValue);
-                }
-                catch (OutOfMemoryException ex)
-                {
-                    throw ex;
+                    sequenceFibonacci = FibonacciService.GetSequenceFibonacci(numbersLenght);
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(ex.Message);
+                    Console.ForegroundColor = ConsoleColor.White;
+                    return;
                 }
             }
-            return sequenceFibonacci;
+            else if (args.Length == 2)
+            {
+                List<uint> parameters = ConsoleManager.ArgsToList<uint>(args);
+                var (minValue, maxValue) = (parameters[0], parameters[1]);
+                Console.WriteLine($"Fibonacci numbers between {minValue} and {maxValue}:");
+                sequenceFibonacci = FibonacciService.GetSequenceFibonacci(minValue, maxValue);
+            }
+            else
+            {
+                Console.WriteLine("The input text has too many parameters");
+            }
+            sequenceFibonacci.ForEach(r => { Console.Write(r + " "); });
+            Console.ReadLine();
         }
     }
 }

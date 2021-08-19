@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HappyTicket", "HappyTicket\HappyTicket.csproj", "{214BA66D-1F15-480A-9D1B-B7F2994A90CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuckyTicket", "HappyTicket\LuckyTicket.csproj", "{214BA66D-1F15-480A-9D1B-B7F2994A90CF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fibonacci", "Fibonachi\Fibonacci.csproj", "{14C08260-421F-4383-B968-F3ABEB773E5D}"
 EndProject
@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessBoard", "ChessBoard\Ch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunicationWithConsole", "Menu\CommunicationWithConsole.csproj", "{ECEAD3EB-EB81-4F95-A068-B29CC7BF1CDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Envelopes", "Triangles\Envelopes.csproj", "{9F014FC9-359C-4EE9-8ECC-BDCCD1B0F5D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Envelopes", "Triangles\Envelopes.csproj", "{9F014FC9-359C-4EE9-8ECC-BDCCD1B0F5D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartApp", "StartApp\StartApp.csproj", "{13D3A99C-351F-46F2-9D07-813C4244A01B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{9F014FC9-359C-4EE9-8ECC-BDCCD1B0F5D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F014FC9-359C-4EE9-8ECC-BDCCD1B0F5D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F014FC9-359C-4EE9-8ECC-BDCCD1B0F5D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13D3A99C-351F-46F2-9D07-813C4244A01B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13D3A99C-351F-46F2-9D07-813C4244A01B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13D3A99C-351F-46F2-9D07-813C4244A01B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13D3A99C-351F-46F2-9D07-813C4244A01B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

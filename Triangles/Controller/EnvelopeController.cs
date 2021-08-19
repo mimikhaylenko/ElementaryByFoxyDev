@@ -7,28 +7,6 @@ namespace Envelopes.Controller
 {
     class EnvelopeController
     {
-        public static (double, double) ParseParametersFromString(string str)
-        {
-            var parameters = (str.Split(" ").ToArray());
-            if (parameters.Length != 2)
-            {
-                throw new Exception("Amount of parameters must be 2");
-            }
-            var parametersToDouble = new List<double>();
-            for (int i = 0; i < parameters.Length; i++)
-            {
-                try
-                {
-                    parametersToDouble.Add(double.Parse(parameters[i].Replace('.', ',')));
-                }
-                catch (Exception)
-                {
-                    throw new Exception("Parameters has a wrong format");
-                }
-            }
-            return (parametersToDouble[0], parametersToDouble[1]);
-        }
-
         public static void Start()
         {
             string answer;
@@ -52,12 +30,38 @@ namespace Envelopes.Controller
                 if (envelopes.Count == 2)
                 {
                     bool envelopeCanFit = EnvelopeCanFit(envelopes[0], envelopes[1]);
-                    var comparisonResult = envelopeCanFit ? "You can do it" : "Sorry, body. Maybe next time";
+                    var comparisonResult = envelopeCanFit ? "You can do it" : "Sorry, buddy. Maybe next time";
                     Console.WriteLine(comparisonResult);
                 }
-                    Console.WriteLine("If you want to continue press y/yes");
-                    answer = Console.ReadLine().ToLower();
+                Console.WriteLine("If you want to continue press y/yes");
+                answer = Console.ReadLine().ToLower();
             } while (answer.Equals("y") || answer.Equals("yes"));
+        }
+
+        public static (double, double) ParseParametersFromString(string str)
+        {
+            var parameters = (str.Split(" ").ToArray());
+            if (parameters.Length != 2)
+            {
+                throw new Exception("Amount of parameters must be 2");
+            }
+            var parametersToDouble = new List<double>();
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                try
+                {
+                    var currentCultureName = System.Globalization.CultureInfo.CurrentCulture.Name;
+                    if (currentCultureName.Contains("ru") || currentCultureName.Contains("ua"))
+                        parametersToDouble.Add(double.Parse(parameters[i].Replace('.', ',')));
+                    else
+                        parametersToDouble.Add(double.Parse(parameters[i].Replace(',', '.')));
+                }
+                catch (Exception)
+                {
+                    throw new Exception("Parameters has a wrong format");
+                }
+            }
+            return (parametersToDouble[0], parametersToDouble[1]);
         }
 
         private static Envelope GetEnvelope()
@@ -84,7 +88,7 @@ namespace Envelopes.Controller
             if (a < b1)
                 return false;
             double c = Math.Sqrt(a * a + b * b);
-            var x = Math.Sqrt(Math.Pow(b1 / 2, 2) + Math.Pow((c - a1)/2, 2));
+            var x = Math.Sqrt(Math.Pow(b1 / 2, 2) + Math.Pow((c - a1) / 2, 2));
             if (x > a || x > b)
             {
                 return envelopeCanFit;
@@ -95,7 +99,7 @@ namespace Envelopes.Controller
 
         private static (double, double) OrderSidesByValue(double a, double b)
         {
-           return a >= b ? (a,b) : (b,a);
-        } 
+            return a >= b ? (a, b) : (b, a);
+        }
     }
 }

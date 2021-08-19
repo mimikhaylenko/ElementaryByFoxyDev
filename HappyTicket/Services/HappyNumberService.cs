@@ -1,4 +1,4 @@
-﻿namespace HappyTicket.Services
+﻿namespace LuckyTicket.Services
 {
     class HappyNumberService
     {
