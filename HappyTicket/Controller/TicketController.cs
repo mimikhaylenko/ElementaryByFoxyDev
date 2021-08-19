@@ -16,8 +16,7 @@ namespace LuckyTicket.ViewModel
             {
                 Console.WriteLine("Error! Parameters are not valid.");
             }
-            List<uint> parameters;
-            bool isParametersValid = ConsoleManager.TryInitParameters(args, new List<string>(), out parameters);
+            bool isParametersValid = ConsoleManager.TryInitParameters(args, new List<string>(), out List<uint> parameters);
             if (isParametersValid)
             {
                 tickets = TicketsService.InitTickets(parameters);

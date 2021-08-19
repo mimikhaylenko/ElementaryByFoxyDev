@@ -7,7 +7,7 @@ namespace Envelopes
     {
         public static void Main()
         {
-            Console.WriteLine("Welcome to Envelope check");
+            Console.WriteLine("\nWelcome to Envelope check");
             EnvelopeController.Start();
         }
     }

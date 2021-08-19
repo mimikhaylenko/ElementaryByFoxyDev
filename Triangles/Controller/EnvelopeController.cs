@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Envelopes.Controller
 {
-    class EnvelopeController
+    static class EnvelopeController
     {
         public static void Start()
         {

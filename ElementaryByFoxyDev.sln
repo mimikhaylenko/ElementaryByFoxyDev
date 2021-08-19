@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Envelopes", "Triangles\Enve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartApp", "StartApp\StartApp.csproj", "{13D3A99C-351F-46F2-9D07-813C4244A01B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumericalSequence", "NumericalSequence\NumericalSequence.csproj", "{3A184641-84B7-441D-AAEE-57E1F44FC68A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{13D3A99C-351F-46F2-9D07-813C4244A01B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13D3A99C-351F-46F2-9D07-813C4244A01B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13D3A99C-351F-46F2-9D07-813C4244A01B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A184641-84B7-441D-AAEE-57E1F44FC68A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A184641-84B7-441D-AAEE-57E1F44FC68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A184641-84B7-441D-AAEE-57E1F44FC68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A184641-84B7-441D-AAEE-57E1F44FC68A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,6 +9,7 @@
     <ProjectReference Include="..\ChessBoard\ChessBoard.csproj" />
     <ProjectReference Include="..\Fibonachi\Fibonacci.csproj" />
     <ProjectReference Include="..\HappyTicket\LuckyTicket.csproj" />
+    <ProjectReference Include="..\NumericalSequence\NumericalSequence.csproj" />
     <ProjectReference Include="..\Triangles\Envelopes.csproj" />
   </ItemGroup>
 
