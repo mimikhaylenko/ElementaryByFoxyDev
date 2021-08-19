@@ -1,5 +1,6 @@
 ﻿using CominucationWithConsole;
 using LuckyTicket.ViewModel;
+using System;
 
 namespace LuckyTicket
 {
@@ -7,8 +8,8 @@ namespace LuckyTicket
     {
         public static void Main(string[] args)
         {
-            TicketController.StartProgram(args);
-            ConsoleManager.CloseProgram();
+            Console.WriteLine("\nWelcome to LuckyTicket check");
+            TicketController.Start(args);
         }
     }
 }

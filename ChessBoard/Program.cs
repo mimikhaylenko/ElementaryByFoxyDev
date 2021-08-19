@@ -1,21 +1,14 @@
-﻿using ChessBoard.Controller;
-using CominucationWithConsole;
-using System;
-using System.Collections.Generic;
+﻿
+using ChessBoard.Controller;
 
 namespace ChessBoard
 {
-    class Program
-    {       
-        static List<string> parametersNames { get; set; } = new List<string>() { "width", "height" };
-        static void Main(string[] args)
+   public class Program
+    {             
+       public static void Main(string[] args)
         {
-            if (ConsoleManager.TryInitParameters(args, parametersNames, out List<uint> parameters))
-            {
-                ChessBoard board = ChessBoardController.CreateChessBoard(parameters[0], parameters[1]);
-                ChessBoardController.ShowBoard(board);
-            }
-            ConsoleManager.CloseProgram();
+            System.Console.WriteLine("\nWelcome to Chessboard's Show");
+            ChessBoardController.Start(args);
         } 
     }
 }

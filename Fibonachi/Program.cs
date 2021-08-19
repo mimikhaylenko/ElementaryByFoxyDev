@@ -8,6 +8,7 @@ namespace Fibonacci
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("\nWelcome to \"Fibonacci Numbers\"");
             FibonacciController.Start(args);
         }
     }

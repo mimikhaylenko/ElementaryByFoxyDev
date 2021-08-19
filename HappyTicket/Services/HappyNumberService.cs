@@ -1,6 +1,6 @@
 ﻿namespace LuckyTicket.Services
 {
-    class HappyNumberService
+    static class HappyNumberService
     {
         /// <summary>
         /// Returns true if sum of the first happyNumberLength/2 digits is equal to a sum of the last happyNumberLength/2 digits 

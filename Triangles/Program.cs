@@ -3,9 +3,9 @@ using System;
 
 namespace Envelopes
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
             Console.WriteLine("Welcome to Envelope check");
             EnvelopeController.Start();

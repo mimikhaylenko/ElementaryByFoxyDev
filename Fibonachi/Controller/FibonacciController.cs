@@ -43,7 +43,7 @@ namespace Fibonacci
                 Console.WriteLine("The input text has too many parameters");
             }
             sequenceFibonacci.ForEach(r => { Console.Write(r + " "); });
-            Console.ReadLine();
+            Console.WriteLine("");
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace CominucationWithConsole
 {
@@ -118,8 +117,8 @@ namespace CominucationWithConsole
         public static void CloseProgram()
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("Press any key to exit");
-            Console.Read();
+            //Console.WriteLine("Press any key to exit");
+           // Console.Read();
             Console.ForegroundColor = ConsoleColor.White;
         }   
     }

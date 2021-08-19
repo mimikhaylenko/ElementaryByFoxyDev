@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CominucationWithConsole;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,6 +7,15 @@ namespace ChessBoard.Controller
 {
    static class ChessBoardController
     {
+        public static void Start(string[] args)
+        {
+            List<string> parametersNames = new List<string>() { "width", "height" };
+            if (ConsoleManager.TryInitParameters(args, parametersNames, out List<uint> parameters))
+            {
+                ChessBoard board = ChessBoardController.CreateChessBoard(parameters[0], parameters[1]);
+                ShowBoard(board);
+            }
+        }
         public static void ShowBoard(ChessBoard board)
         {
             if (board is null)
