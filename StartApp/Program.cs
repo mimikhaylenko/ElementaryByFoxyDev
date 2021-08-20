@@ -9,8 +9,10 @@
 
             LuckyTicket.Program.Main(new string[2] { "000003", "150000" });
             ChessBoard.Program.Main(new string[2] { "13", "15" });
-            Envelopes.Program.Main();
-            NumericalSequence.Program.Main();
+            //Envelopes.Program.Main();
+           TrianglesSorting.Program.Main();
+
+           // NumericalSequence.Program.Main();
         }
     }
 }

@@ -30,6 +30,16 @@ namespace ValidationClass
 
             return true;
         }
+        public static string TrimDoubleSpace(this string str)
+        {
+            var inputedString = str.Trim();
+            while (inputedString.Contains("  "))
+            {
+                inputedString = inputedString.Replace("  ", " ");
+            }
+            return inputedString;
+        }
+
         private static bool CheckFormatingLine(string line)
         {
             var stackForBrackets = new Stack<char>();

@@ -78,10 +78,10 @@ namespace CominucationWithConsole
             }
             return inputedParameters;
         }
-        public static List<T> GetParameters<T>(string[] args, List<string> parametersNames = null)
+        public static List<T> GetParameters<T>(string[] args, int numberOfParameters, List<string> parametersNames = null)
         {
             List<T> inputedParameters;
-            if (args.Length == 2)
+            if (args.Length == numberOfParameters)
             {
                 try
                 {
@@ -104,7 +104,7 @@ namespace CominucationWithConsole
         {
             try
             {
-                parameters = GetParameters<uint>(args, parametersNames);
+                parameters = GetParameters<uint>(args, parametersNames.Count, parametersNames);
                 return true;
             }
             catch (Exception ex)
