@@ -1,4 +1,5 @@
-﻿using CominucationWithConsole;
+﻿using ComunicationWithConsole;
+using Services;
 using System;
 using System.Collections.Generic;
 using TrianglesSorting.Model;
@@ -50,7 +51,8 @@ namespace TrianglesSorting.Controller
             int countOfSides = 3;
             string[] inputedParams = new string[countOfSides];
             Array.Copy(parameters, 1, inputedParams, 0, countOfSides);
-            var sides = ConsoleManager.GetParameters<double>(inputedParams, countOfSides);
+            IUserInteracting userInteracting = new ConsoleManager();
+            var sides = userInteracting.GetParameters<double>(inputedParams, countOfSides);
             sides.Sort();            
             if (sides[0] + sides[1] > sides[2])
             {

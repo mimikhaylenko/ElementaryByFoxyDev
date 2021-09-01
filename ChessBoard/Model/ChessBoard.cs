@@ -18,23 +18,25 @@ namespace ChessBoard
             Area = width * height;
             SquareTypes = new List<string>(2) { " *", "  " };
         }
-        public void Show()
+        public string GetSchema()
         {         
             int charIndex = 0;
+            string boardImage = string.Empty;
             for (int i = 1; i <= Area; i++)
             {
                 string currentSymbol;
                 currentSymbol = SquareTypes[(charIndex + i)%2];
-                Console.Write(currentSymbol);
+                boardImage += currentSymbol;
                 if (i % Width == 0)
                 {
                   if (Width % 2 == 0)
                     { 
                         charIndex = charIndex == 1 ? 0: 1 ; 
                     }
-                    Console.WriteLine();
+                    boardImage += "\n";
                 }
             }
+            return boardImage;
         }
     }
 }

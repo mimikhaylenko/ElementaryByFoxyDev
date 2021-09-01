@@ -1,6 +1,7 @@
-﻿using CominucationWithConsole;
+﻿using ComunicationWithConsole;
 using Envelopes.Model;
 using Envelopes.Service;
+using Services;
 using System;
 using System.Collections.Generic;
 
@@ -46,7 +47,7 @@ namespace Envelopes.Controller
             string[] args = inputLine.Split(" ");
             try
             {               
-                var sides = ConsoleManager.ArgsToList<double>(args);
+                var sides = AppArgsService.ArgsToList<double>(args);
                 if (!sides.TrueForAll(side => side > 0))
                 {
                     throw new Exception("A side was 0");

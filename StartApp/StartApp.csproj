@@ -8,7 +8,9 @@
   <ItemGroup>
     <ProjectReference Include="..\ChessBoard\ChessBoard.csproj" />
     <ProjectReference Include="..\Fibonachi\Fibonacci.csproj" />
+    <ProjectReference Include="..\FileParser\FileParser.csproj" />
     <ProjectReference Include="..\HappyTicket\LuckyTicket.csproj" />
+    <ProjectReference Include="..\IntToString\IntToString.csproj" />
     <ProjectReference Include="..\NumericalSequence\NumericalSequence.csproj" />
     <ProjectReference Include="..\TrianglesSorting\TrianglesSorting.csproj" />
     <ProjectReference Include="..\Triangles\Envelopes.csproj" />

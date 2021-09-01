@@ -1,10 +1,11 @@
-﻿using CominucationWithConsole;
+﻿using ComunicationWithConsole;
 using System;
+using Services;
 using System.Collections.Generic;
 
 namespace Fibonacci
 {
-   public class Program
+    public class Program
     {
         public static void Main(string[] args)
         {

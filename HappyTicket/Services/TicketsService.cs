@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LuckyTicket.Services
 {
-   public static class TicketsService
+    public static class TicketsService
     {
         public static bool IsEveryTicketNumberHasEnoughSymbols(string[] ticketArray, int ticketLenght)
         {
@@ -32,7 +32,7 @@ namespace LuckyTicket.Services
                     continueProcess = Console.Read() == 'y';
                     if (!continueProcess)
                     {
-                        Console.WriteLine("Tickets were not created");                  
+                        Console.WriteLine("Tickets were not created");
                     }
                 }
                 try

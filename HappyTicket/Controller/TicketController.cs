@@ -1,31 +1,46 @@
-﻿using CominucationWithConsole;
+﻿using ComunicationWithConsole;
 using LuckyTicket.Model;
 using LuckyTicket.Services;
+using Services;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LuckyTicket.ViewModel
 {
-    static class TicketController
+    class TicketController
     {
-        public static void Start(string[] args)
+        IUserInteracting userInteracting;
+        static TicketController instance;
+        List<uint> parameters;
+        public static TicketController Instance
         {
-            List<Ticket> tickets;
+            get
+            {
+                if(instance is null)
+                {
+                    instance = new TicketController();
+                }
+                return instance;
+            }
+        }
+        public string Start(string[] args, IUserInteracting source)
+        {   
+            List<Ticket>  tickets = TicketsService.InitTickets(parameters);
+            return TicketsService.GetInfoAboutTickets(tickets);
+        }
+        public void SetParameters(string[] args, IUserInteracting source)
+        {
+            parameters = new List<uint>();
+            userInteracting = source;
             if (!TicketsService.IsEveryTicketNumberHasEnoughSymbols(args, 6))
             {
-                Console.WriteLine("Error! Parameters are not valid.");
+                throw new Exception ("Error! Parameters are not valid");
             }
-            bool isParametersValid = ConsoleManager.TryInitParameters(args, new List<string>(), out List<uint> parameters);
-            if (isParametersValid)
+            bool isParametersValid = userInteracting.TryInitParameters(args, new List<string>(), out parameters);
+            if (!isParametersValid)
             {
-                tickets = TicketsService.InitTickets(parameters);
-                Console.WriteLine(TicketsService.GetInfoAboutTickets(tickets));
+                throw new Exception ( "Parameters are not valid. Do you want to continue? (Press y or n)");
             }
-            else
-            {
-                Console.WriteLine("Parameters are not valid. Do you want to continue? (Press y or n)");
-            }
-        }     
+        }
     }
 }

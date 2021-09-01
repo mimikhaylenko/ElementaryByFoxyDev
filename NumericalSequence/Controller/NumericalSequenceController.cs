@@ -1,4 +1,5 @@
-﻿using CominucationWithConsole;
+﻿using ComunicationWithConsole;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,15 +8,15 @@ namespace NumericalSequence.Controller
 {
     public static class NumericalSequenceController
     {
-        public static void Start()
+        public static void Start(IUserInteracting view)
         {
-            double minSquare = ConsoleManager.ReadParameter<double>("minimal square");
+            double minSquare = view.ReadParameter<double>("minimal square");
             if (minSquare < 0)
             {
                 Console.WriteLine("Error! The square can't be less than 0");
                 return;
             }
-            uint countOfNumbers = ConsoleManager.ReadParameter<uint>("count of numbers");
+            uint countOfNumbers = view.ReadParameter<uint>("count of numbers");
             var sequence = GetSequence(minSquare, countOfNumbers);
             sequence.ForEach(num => Console.Write($"{num}, "));
         }

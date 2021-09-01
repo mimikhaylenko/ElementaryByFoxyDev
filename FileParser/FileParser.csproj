@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Menu\CommunicationWithConsole.csproj" />
-    <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
 </Project>

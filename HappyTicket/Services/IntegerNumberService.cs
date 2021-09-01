@@ -2,7 +2,7 @@
 
 namespace LuckyTicket.Services
 {
-   public static class IntegerNumberService
+    public static class IntegerNumberService
     {
         public static uint Length(uint number)
         {

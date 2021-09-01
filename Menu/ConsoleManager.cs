@@ -1,32 +1,13 @@
-﻿using System;
+﻿using Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace CominucationWithConsole
+namespace ComunicationWithConsole
 {
-    public static class ConsoleManager
+    public class ConsoleManager: IUserInteracting
     {
-        public static List<T> ParseToList<T>(List<string> parameterNames)
-        {
-            int parametersCount = parameterNames.Count;
-            List<T> inputedParameters = new List<T>(parametersCount);
-            for (int i = 0; i < parametersCount; i++)
-            {
-                var name = parameterNames[i];
-                try
-                {
-                    T newParameter = ReadParameter<T>(name);
-                    inputedParameters.Add(newParameter);
-                }
-                catch (OperationCanceledException)
-                {
-                    break;
-                }
-            }
-            return inputedParameters;
-        }
-
-        public static T ReadParameter<T>(string parameterName)
+        public T ReadParameter<T>(string parameterName)
         {
             T inputedParameter = default(T);
             bool inputIsValid;
@@ -54,72 +35,6 @@ namespace CominucationWithConsole
                 }
             } while (!inputIsValid);
             return inputedParameter;
-        }
-
-        public static List<T> ArgsToList<T>(string[] args)
-        {
-            T inputedParameter;
-            TypeConverter converter = TypeDescriptor.GetConverter(typeof(T));
-            List<T> inputedParameters = new List<T>();
-            for (int i = 0; i < args.Length; i++)
-            {
-                try {
-                    inputedParameter = (T)converter.ConvertFromString(args[i]);
-                    inputedParameters.Add(inputedParameter);
-                }
-                catch(InvalidCastException)
-                {
-                    throw new Exception($"Value {args[i]} is not valid");
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-            return inputedParameters;
-        }
-        public static List<T> GetParameters<T>(string[] args, int numberOfParameters, List<string> parametersNames = null)
-        {
-            List<T> inputedParameters;
-            if (args.Length == numberOfParameters)
-            {
-                try
-                {
-                    return ArgsToList<T>(args);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    throw new OperationCanceledException("Not all parameters were inputed");
-                }
-            }
-            if (parametersNames is null)
-            {
-                throw new OperationCanceledException("parametersNames can't be null");
-            }           
-            inputedParameters = ParseToList<T>(parametersNames);
-            return inputedParameters;
-        }
-        public static bool TryInitParameters(string[] args, List<string> parametersNames, out List<uint> parameters)
-        {
-            try
-            {
-                parameters = GetParameters<uint>(args, parametersNames.Count, parametersNames);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                parameters = null;
-                Console.WriteLine($"Error. The parameters are not aligned({ex})");
-            }
-            return false;
-        }
-        public static void CloseProgram()
-        {
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            //Console.WriteLine("Press any key to exit");
-           // Console.Read();
-            Console.ForegroundColor = ConsoleColor.White;
-        }   
+        }     
     }
 }

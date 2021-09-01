@@ -49,9 +49,9 @@ namespace Fibonacci.Service
 
         public static List<uint> GetSequenceFibonacci(uint numbersLenght)
         {
-            if(Math.Pow(10, numbersLenght - 1) > uint.MaxValue || Math.Pow(10, numbersLenght) - 1> uint.MaxValue)
+            if(Math.Pow(10, numbersLenght) - 1 > uint.MaxValue)
             {
-                throw new Exception("Cannot convert a Long to a UInt");
+                throw new Exception("Can not convert Long to UInt");
             }
             uint firstItem = (uint)Math.Pow(10, numbersLenght - 1);
             uint secondItem = (uint)Math.Pow(10, numbersLenght) - 1;
