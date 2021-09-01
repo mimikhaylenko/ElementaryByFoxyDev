@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ComunicationWithConsole;
+using Services;
+using System;
 using System.Collections.Generic;
 
 namespace IntToString
@@ -50,11 +52,7 @@ namespace IntToString
             {1000000,"миллион" },
             {1000000000,"миллиард" }
         };
-        public static string GetString(this int value)
-        {
-            return TransformIntToString(value);
-        }
-        private static string TransformIntToString(int number)
+        public static string GetString(this int number)
         {
             if (number == 0)
             {
@@ -74,7 +72,11 @@ namespace IntToString
                 var numPart = (int)((int)(number / Math.Pow(10, i)) * Math.Pow(10, i) % Math.Pow(10, i + 1));
                 if (Numbers.ContainsKey(numPart))
                 {
-                    res += Numbers[numPart] + " ";
+                    res += Numbers[numPart];
+                }
+                if (i != 0 && !String.IsNullOrEmpty(res))
+                {
+                    res += " ";
                 }
             }
             return res;
@@ -88,18 +90,56 @@ namespace IntToString
             { 1, "тысяча"},
             { 2, "миллион"},
             { 3, "миллиард"},
+            { 4, "биллион"},
+            { 5, "триллион"},
         };
         public int Value { get; set; }
         string stringValue;
         public string StringValue
         {
             get
-            {
+            {                
                 if (stringValue is null)
                 {
+                    if(Value == 0)
+                    {
+                        return "ноль";
+                    }
                     for (int i = Classes.Count - 1; i >= 0; i--)
                     {
-                        stringValue += Classes[i].GetString() + " " + NumbersClassess[i] + " ";                        
+                        string className = string.Empty;
+                        string classValue = Classes[i].GetString();
+                        if (NumbersClassess[i].Equals("тысяча"))
+                        {
+                            if (classValue.EndsWith('е') || classValue.EndsWith('и'))
+                            {
+                                className = NumbersClassess[i][0..^1] + 'и';
+                            }
+                            else if (classValue.EndsWith('ь'))
+                            {
+                                className = NumbersClassess[i][0..^1];
+                            }
+                            else
+                            {
+                                className = NumbersClassess[i];
+                            }
+                        }
+                        else if (!NumbersClassess[i].Equals(""))
+                        {
+                            if (classValue.EndsWith('ь'))
+                            {
+                                className = NumbersClassess[i] + "ов";
+                            }
+                            else if (classValue.EndsWith('н'))
+                            {
+                                className = NumbersClassess[i];
+                            }
+                            else
+                            {
+                                className = NumbersClassess[i] + 'а';
+                            }
+                        }
+                        stringValue += Classes[i].GetString() + " " + className + " ";
                     }
                 }
                 return stringValue;
@@ -125,17 +165,17 @@ namespace IntToString
     }
 
     public class Program
-    {      
+    {
         public static void Main(string[] args)
         {
-            for (int i = 1299; i < 1400; i++)
+            List<string> parametersNames = new List<string>() { "number" };
+            if ((new ConsoleManager()).TryInitParameters(args, parametersNames, out List<int> parameters))
             {
-                Number n = new Number(i);
-
+                Number n = new Number(parameters[0]);
                 n.InitClassess();
                 Console.WriteLine(n.StringValue);
+                Console.Read();
             }
-            Console.Read();
         }
     }
 }

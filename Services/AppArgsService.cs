@@ -76,11 +76,11 @@ namespace Services
             return inputedParameters;
         }
 
-        public static bool TryInitParameters(this IUserInteracting source, string[] args, List<string> parametersNames, out List<uint> parameters)
+        public static bool TryInitParameters<T>(this IUserInteracting source, string[] args, List<string> parametersNames, out List<T> parameters)
         {
             try
             {
-                parameters = source.GetParameters<uint>(args, parametersNames.Count, parametersNames);
+                parameters = source.GetParameters<T>(args, parametersNames.Count, parametersNames);
                 return true;
             }
             catch

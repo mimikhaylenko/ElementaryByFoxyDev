@@ -25,7 +25,7 @@ namespace ChessBoard.Tests
         public void GetImage_ImageOfBoardMustBeEquallyExpectedResult(uint width, uint height, string expect)
         {
             var board = new ChessBoard(width, height);
-            board.SquareTypes = new List<string> { "*", " " };
+            board.SquareTypes = new [] { "*", " " };
             var actual = board.GetSchema();
             Assert.AreEqual(expect, actual);
         }
