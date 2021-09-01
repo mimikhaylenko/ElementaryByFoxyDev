@@ -8,7 +8,7 @@ namespace IntToString
     public static class EasyNumber
     {
 
-        public static Dictionary<int, string> Numbers = new Dictionary<int, string>
+        public static Dictionary<long, string> Numbers = new Dictionary<long, string>
         {
             {0,""},
             {1,"один"},
@@ -50,14 +50,12 @@ namespace IntToString
             {1000,"одна тысяча" },
             {2000,"две тысячи" },
             {1000000,"миллион" },
-            {1000000000,"миллиард" }
+            {1000000000,"миллиард" },
+            {1000000000000,"биллион" },
+            {1000000000000000,"триллион" }
         };
         public static string GetString(this int number)
         {
-            if (number == 0)
-            {
-                return "ноль";
-            }
             if (Numbers.ContainsKey(number))
             {
                 return Numbers[number];
@@ -93,7 +91,7 @@ namespace IntToString
             { 4, "биллион"},
             { 5, "триллион"},
         };
-        public int Value { get; set; }
+        public long Value { get; set; }
         string stringValue;
         public string StringValue
         {
@@ -111,7 +109,7 @@ namespace IntToString
                         string classValue = Classes[i].GetString();
                         if (NumbersClassess[i].Equals("тысяча"))
                         {
-                            if(classValue.EndsWith('а'))
+                            if (classValue.EndsWith('а'))
                             {
                                 classValue = classValue[0..^1] + 'е';
                                 className = NumbersClassess[i][0..^1] + 'и';
@@ -145,7 +143,10 @@ namespace IntToString
                                 className = NumbersClassess[i] + 'а';
                             }
                         }
-                        stringValue += classValue + " " + className + " ";
+                        if (!string.IsNullOrEmpty(classValue))
+                        {
+                            stringValue += classValue + " " + className + " ";
+                        }
                     }
                 }
                 return stringValue;
@@ -154,16 +155,16 @@ namespace IntToString
         }
         public void InitClassess()
         {
-            int value = Value;
+            long value = Value;
             while (value > 0)
             {
-                Classes.Add(value % 1000);
-                value = (int)value / 1000;
+                Classes.Add((int)(value % 1000));
+                value = (long)value / 1000;
             }
         }
         public List<int> Classes;
 
-        public Number(int value)
+        public Number(long value)
         {
             Classes = new List<int>();
             Value = value;
@@ -175,7 +176,7 @@ namespace IntToString
         public static void Main(string[] args)
         {
             List<string> parametersNames = new List<string>() { "number" };
-            if ((new ConsoleManager()).TryInitParameters(args, parametersNames, out List<int> parameters))
+            if ((new ConsoleManager()).TryInitParameters(args, parametersNames, out List<long> parameters))
             {
                 Number n = new Number(parameters[0]);
                 n.InitClassess();
