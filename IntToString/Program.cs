@@ -111,17 +111,23 @@ namespace IntToString
                         string classValue = Classes[i].GetString();
                         if (NumbersClassess[i].Equals("тысяча"))
                         {
-                            if (classValue.EndsWith('е') || classValue.EndsWith('и'))
+                            if(classValue.EndsWith('а'))
+                            {
+                                classValue = classValue[0..^1] + 'е';
+                                className = NumbersClassess[i][0..^1] + 'и';
+                            }
+                            else if (classValue.EndsWith('н'))
+                            {
+                                classValue = classValue[0..^2] + "на";
+                                className = NumbersClassess[i];
+                            }
+                            else if (classValue.EndsWith('е') || classValue.EndsWith('и'))
                             {
                                 className = NumbersClassess[i][0..^1] + 'и';
                             }
                             else if (classValue.EndsWith('ь'))
                             {
                                 className = NumbersClassess[i][0..^1];
-                            }
-                            else
-                            {
-                                className = NumbersClassess[i];
                             }
                         }
                         else if (!NumbersClassess[i].Equals(""))
@@ -139,7 +145,7 @@ namespace IntToString
                                 className = NumbersClassess[i] + 'а';
                             }
                         }
-                        stringValue += Classes[i].GetString() + " " + className + " ";
+                        stringValue += classValue + " " + className + " ";
                     }
                 }
                 return stringValue;
@@ -174,7 +180,6 @@ namespace IntToString
                 Number n = new Number(parameters[0]);
                 n.InitClassess();
                 Console.WriteLine(n.StringValue);
-                Console.Read();
             }
         }
     }
