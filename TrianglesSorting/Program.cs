@@ -7,7 +7,7 @@ namespace TrianglesSorting
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("\nWelcome to Numerical Sequences");
+            Console.WriteLine("\nWelcome to Triangle Sort");
             TriangleController.Start();
         }
     }

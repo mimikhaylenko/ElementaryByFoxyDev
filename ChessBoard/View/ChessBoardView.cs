@@ -10,11 +10,11 @@ namespace ChessBoard.View
     {
         private const int MAX_CONSOLE_WIDTH = 80;
         public static void Show(string[] args)
-        {            
-           string boardSchema = (new ConsoleManager()).GetBoardInfo(args, GetMaximumConsoleWidth());
+        {
+            string boardSchema = (new ConsoleManager()).GetBoardInfo(args, GetMaximumConsoleWidth());
             Console.WriteLine(boardSchema);
         }
-        private static int GetMaximumConsoleWidth()
+    private static int GetMaximumConsoleWidth()
         {
             int consoleWidth;
             try

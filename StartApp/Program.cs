@@ -22,7 +22,8 @@ namespace StartApp
             string answer;
             do
             {
-                string menuTxt = @"Select the program
+                string menuTxt = @"
+Select the program
 1. Chessboard
 2. Envelopes
 3. Triangles Sorting

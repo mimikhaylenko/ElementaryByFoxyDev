@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -8,11 +9,10 @@ namespace FileParser.Controller
 {
     public static class FileParserController
     {
-        public static void Start(string[] args)
+        public static void Start(this IUserInteracting userInteracting, string[] args)
         {
             if (args.Length == 0)
             {
-                Console.WriteLine($"Error! Inputed parameters are invalid");
                 return;
             }
             Array.ForEach(args, ar => Console.WriteLine(ar));

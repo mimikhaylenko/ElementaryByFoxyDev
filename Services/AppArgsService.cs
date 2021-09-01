@@ -83,15 +83,9 @@ namespace Services
                 parameters = source.GetParameters<uint>(args, parametersNames.Count, parametersNames);
                 return true;
             }
-            catch (OperationCanceledException ex)
+            catch
             {
                 parameters = null;
-                Console.WriteLine($"Error. The parameters are not aligned({ex.Message})");
-            }
-            catch (Exception ex)
-            {
-                parameters = null;
-                Console.WriteLine($"Unexpected error {ex.Message}");
             }
             return false;
         }

@@ -6,7 +6,7 @@ namespace ChessBoard
 {
     public class ChessBoard
     {
-        public List<string> SquareTypes { get; set; }
+        public string[] SquareTypes { get; set; }
         public uint Width { get; private set; }
         public uint Height { get; private set; }
         public uint Area { get; private set; }
@@ -16,7 +16,7 @@ namespace ChessBoard
             Width = width;
             Height = height;
             Area = width * height;
-            SquareTypes = new List<string>(2) { " *", "  " };
+            SquareTypes = new [] { " *", "  " };
         }
         public string GetSchema()
         {         
